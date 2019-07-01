@@ -11,29 +11,30 @@ import requests
 import urllib
 import shutil
 r = urllib.request.urlopen(url)
-contents = r.read()
+bContents = r.read()
+contents = bContents.decode("utf-8")
 #print(contents)
 ##with open(outfile, 'wb') as f:
 ##        shutil.copyfileobj(r, f)
 
 import re
-#m=re.search(b"<li [^>]*>([^<]*)", contents)
+#m=re.search("<li [^>]*>([^<]*)", contents)
 #print("SEARCH:")
 #print(m)
-m=re.findall(b"<li [^>]*>([^<]*)|(</li>)", contents)
+m=re.findall("<li [^>]*>([^<]*)|(</li>)", contents)
 print("FINDALL:")
 #print(m)
 
 isFirst = True
 ident=0
 for entry in m:
-    isClosing = (entry[1] == b'</li>')
+    isClosing = (entry[1] == '</li>')
     if (isClosing):
         if (not isFirst):
             ident-=1
     else:
-        if (entry[0] != b''):
+        if (entry[0] != ''):
             isFirst = False
         if (not isFirst):
             ident+=1
-            print(str(ident)+":"+str(entry[0]))
+            print(str(ident)+":"+entry[0])
