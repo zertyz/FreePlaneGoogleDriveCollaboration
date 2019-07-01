@@ -29,11 +29,11 @@ ident=0
 for entry in m:
     isClosing = (entry[1] == b'</li>')
     if (isClosing):
-        print(entry[1])
-        ident-=1
+        if (not isFirst):
+            ident-=1
     else:
         if (entry[0] != b''):
             isFirst = False
-        if (~isFirst):
-            print(str(ident)+":"+str(entry[0]))
+        if (not isFirst):
             ident+=1
+            print(str(ident)+":"+str(entry[0]))
