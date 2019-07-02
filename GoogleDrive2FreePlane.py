@@ -38,3 +38,6 @@ for entry in m:
         if (not isFirst):
             ident+=1
             print(str(ident)+":"+entry[0])
+
+# you might want to export the map to .adoc (or .txt) and then move from there on into producing a pastable object to google drive...
+# or simply use .svg, putting it on the site's resource section...
